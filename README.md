@@ -1,8 +1,10 @@
 # redis cluster and cluster client
 
-redis_cluster_example repository demonstrates a way to create redis cluster and using the cluster using go redis cluster client.
+redis_cluster_example repository demonstrates a way to 
+ - create redis cluster and
+ - use of redis cluster, using go redis cluster client.
 
-Prerequisites
+#### Prerequisites
 
 ```
 docker
