@@ -26,3 +26,9 @@ This will create a cluster of 3 master nodes and 3 slave nodes.
 go build -o runner *.go
 ./runner
 ```
+
+#### To update packages
+
+```
+export GO111MODULE=on; go mod tidy; go mod vendor; unset GO111MODULE
+```
