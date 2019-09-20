@@ -8,9 +8,9 @@ type StorageDriver interface {
 	// Get retrieves the object for the given key.
 	Get(string) (interface{}, error)
 	// Delete deletes the object and key for the given key.
-	Delete(string) (interface{}, error)
+	Delete(string) error
 	// Exists reports whether object for the given key exists.
-	Exists(string) (int64, error)
+	Exists(string) bool
 	// Close closes the storage client, releasing any open resources.
 	Close() error
 }

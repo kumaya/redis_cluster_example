@@ -1,3 +1,15 @@
+# github.com/alicebob/gopher-json v0.0.0-20180125190556-5a6b3ba71ee6
+github.com/alicebob/gopher-json
+# github.com/alicebob/miniredis v2.5.0+incompatible
+github.com/alicebob/miniredis
+github.com/alicebob/miniredis/server
+# github.com/davecgh/go-spew v1.1.0
+github.com/davecgh/go-spew/spew
+# github.com/go-redis/cache v6.4.0+incompatible
+github.com/go-redis/cache
+github.com/go-redis/cache/internal
+github.com/go-redis/cache/internal/lrucache
+github.com/go-redis/cache/internal/singleflight
 # github.com/go-redis/redis v6.15.5+incompatible
 github.com/go-redis/redis
 github.com/go-redis/redis/internal
@@ -6,3 +18,36 @@ github.com/go-redis/redis/internal/hashtag
 github.com/go-redis/redis/internal/pool
 github.com/go-redis/redis/internal/proto
 github.com/go-redis/redis/internal/util
+# github.com/golang/protobuf v1.3.1
+github.com/golang/protobuf/proto
+# github.com/gomodule/redigo v2.0.0+incompatible
+github.com/gomodule/redigo/redis
+github.com/gomodule/redigo/internal
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/stretchr/testify v1.4.0
+github.com/stretchr/testify/assert
+# github.com/vmihailenco/msgpack v4.0.4+incompatible
+github.com/vmihailenco/msgpack
+github.com/vmihailenco/msgpack/codes
+# github.com/yuin/gopher-lua v0.0.0-20190514113301-1cd887cd7036
+github.com/yuin/gopher-lua
+github.com/yuin/gopher-lua/parse
+github.com/yuin/gopher-lua/ast
+github.com/yuin/gopher-lua/pm
+# golang.org/x/net v0.0.0-20190603091049-60506f45cf65
+golang.org/x/net/context
+# google.golang.org/appengine v1.6.2
+google.golang.org/appengine/datastore
+google.golang.org/appengine
+google.golang.org/appengine/datastore/internal/cloudkey
+google.golang.org/appengine/internal
+google.golang.org/appengine/internal/datastore
+google.golang.org/appengine/internal/app_identity
+google.golang.org/appengine/internal/modules
+google.golang.org/appengine/datastore/internal/cloudpb
+google.golang.org/appengine/internal/base
+google.golang.org/appengine/internal/log
+google.golang.org/appengine/internal/remote_api
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2

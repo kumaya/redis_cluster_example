@@ -60,31 +60,31 @@ func (r *redisClient) Get(key string) (interface{}, error) {
 }
 
 // Delete deletes the object and key for the given key from redis ring.
-func (r *redisClient) Delete(key string) (interface{}, error) {
+func (r *redisClient) Delete(key string) error {
 	fmt.Printf("Delete: (%s)\n", key)
 	dOp := r.clusterCL.Del(key)
 	if dOp.Err() != nil {
-		return nil, dOp.Err()
+		return dOp.Err()
 	}
-	res, err := dOp.Result()
+	_, err := dOp.Result()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return res, nil
+	return nil
 }
 
 // Exists reports whether object for the given key exists.
-func (r *redisClient) Exists(key string) (int64, error) {
+func (r *redisClient) Exists(key string) bool {
 	fmt.Printf("Exists: (%s)\n", key)
 	eOp := r.clusterCL.Exists(key)
 	if eOp.Err() != nil {
-		return 0, eOp.Err()
+		return false
 	}
-	res, err := eOp.Result()
+	_, err := eOp.Result()
 	if err != nil {
-		return res, err
+		return false
 	}
-	return res, nil
+	return true
 }
 
 // Close closes the ring client, releasing any open resources.
@@ -93,9 +93,9 @@ func (r *redisClient) Close() error {
 	return r.clusterCL.Close()
 }
 
-func main() {
+func redisClusterOps() {
 	addrs := []string{":7001", ":7002", ":7003", ":7004", ":7005", ":7006"}
-	fmt.Println("redis cluster client...\n")
+	fmt.Println("redis cluster client...")
 
 	cluster := NewRedisClient(addrs)
 	// close...
@@ -120,22 +120,15 @@ func main() {
 	}
 
 	// exists...
-	res, err = cluster.Exists(key)
-	if err != nil {
-		fmt.Printf("err: %v\n", err)
-	} else {
-		fmt.Printf("%v\n", res)
-	}
+	res = cluster.Exists(key)
+	fmt.Printf("%v\n", res)
+
 	// unknown key...
-	res, err = cluster.Exists("randomNonExistentKey")
-	if err != nil {
-		fmt.Printf("err: %v\n", err)
-	} else {
-		fmt.Printf("%v\n", res)
-	}
+	res = cluster.Exists("randomNonExistentKey")
+	fmt.Printf("%v\n", res)
 
 	// expire
-	fmt.Printf("sleeping for expire...")
+	fmt.Printf("sleeping for expire...\n")
 	time.Sleep(5 * time.Second)
 
 	// get...
@@ -147,12 +140,8 @@ func main() {
 	}
 
 	// exists...
-	res, err = cluster.Exists(key)
-	if err != nil {
-		fmt.Printf("err: %v\n", err)
-	} else {
-		fmt.Printf("%v\n", res)
-	}
+	res = cluster.Exists(key)
+	fmt.Printf("%v\n", res)
 
 	// delete...
 	// set...
@@ -161,12 +150,8 @@ func main() {
 		fmt.Printf("err: %v\n", err)
 	}
 
-	res, err = cluster.Delete(key)
-	if err != nil {
-		fmt.Printf("err: %v\n", err)
-	} else {
-		fmt.Printf("%v\n", res)
-	}
+	res = cluster.Delete(key)
+	fmt.Printf("%v\n", res)
 
 	// get...
 	res, err = cluster.Get(key)
